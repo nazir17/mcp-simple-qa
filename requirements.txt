@@ -9,3 +9,4 @@ tqdm
 numpy
 requests
 google-generativeai
+mcp-use
