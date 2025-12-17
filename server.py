@@ -4,11 +4,7 @@ from app.postman_loader import load_postman_collection
 from app.google_llm import generate_answer
 
 # Initialize MCP server
-mcp = FastMCP(
-    name="api-docs-mcp-server",
-    host="127.0.0.1",
-    port=3333
-)
+mcp = FastMCP(name="API Doc Assistant")
 
 
 qa = QAIndex()
@@ -33,22 +29,6 @@ def load_postman_collection_tool(file_bytes: str):
         "status": "ok",
         "indexed_endpoints": added
     }
-
-
-@mcp.tool()
-def query_docs(question: str, top_k: int = 3):
-    """
-    Retrieve relevant documentation chunks.
-    """
-    results = qa.search(question, top_k=top_k)
-    return [
-        {
-            "score": score,
-            "endpoint": meta.get("doc_id"),
-            "text": meta.get("chunk_text")
-        }
-        for score, meta in results
-    ]
 
 
 @mcp.tool()

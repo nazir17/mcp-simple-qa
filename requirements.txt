@@ -1,12 +1,6 @@
-fastapi
-uvicorn[standard]
-pydantic
-python-multipart
 sentence-transformers
 faiss-cpu
-pdfplumber
-tqdm
 numpy
-requests
 google-generativeai
+python-dotenv
 mcp-use
